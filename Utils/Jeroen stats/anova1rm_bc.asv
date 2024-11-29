@@ -1,0 +1,173 @@
+function [F,P] = anova1rm_bc(table)
+% Function created by bdc on July 15th to perform one-way RM ANOVA on table
+% Table is arranged so that the rows are the subjects, and the columns
+% are the treatments.
+% Algorithm based on Zar, 1999, Biostatistical Analysis, 4ed, pg 255-259
+% Post-hoc Tukey test performed, see Zar pg 261
+
+SUMXij = sum(sum(table));
+table2 = table .* table;
+SUMX2ij = sum(sum(table2));
+
+C = (SUMXij * SUMXij)/(size(table,1)*size(table,2));
+
+TotalSS = SUMX2ij - C;
+
+rowsum = sum(table,2);
+sumrowsum2 = sum(rowsum .* rowsum);
+SubjectsSS = sumrowsum2/size(table,2) - C;
+
+WithinSubjectsSS = TotalSS - SubjectsSS;
+
+colsum = sum(table,1);
+sumcolsum2 = sum(colsum .* colsum);
+TreatmentSS = sumcolsum2/size(table,1) - C;
+
+RemainderSS = WithinSubjectsSS - TreatmentSS;
+
+TotalDF = size(table,1) * size(table,2) - 1;
+SubjectsDF = size(table,1) - 1;
+WithinSubjectsDF = TotalDF - SubjectsDF;
+TreatmentDF = size(table,2) - 1;
+RemainderDF = WithinSubjectsDF - TreatmentDF;
+
+TreatmentMS = TreatmentSS / TreatmentDF;
+RemainderMS = RemainderSS / RemainderDF;
+
+F = TreatmentMS / RemainderMS;
+P = 1 - fcdf(F,TreatmentDF,RemainderDF);
+
+lineA = 'Analysis of Variance Table';
+lineA2 = '';
+lineB = sprintf('%s\t%s\t\t\t%s\t\t%s\t','Source of var','SS','DF','MS');
+lineC = sprintf('%s\t\t\t%.2f\t%d\t','Total',TotalSS,TotalDF);
+lineD = sprintf('%s\t\t%.2f\t%d\t','Subjects',SubjectsSS,SubjectsDF);
+lineE = sprintf('%s\t\t%.2f\t\t%d\t\t%.2f\t','Treatments',TreatmentSS,TreatmentDF,TreatmentMS);
+lineF = sprintf('%s\t\t%.2f\t\t%d\t\t%.2f\t','Remainder',RemainderSS,RemainderDF,RemainderMS);
+lineG = '';
+lineH = sprintf('%s\t%.2f\t',strcat('F(1,',num2str(TreatmentDF),',',num2str(RemainderDF),') = '),F);
+lineI = sprintf('%s\t%.6f\t','P = ',P);
+
+sprintf('%s\n',lineA,lineA2,lineB,lineC,lineD,lineE,lineF,lineG,lineH,lineI)
+
+% Create structure for multiple comparisons test
+
+for i = 1:size(table,2)
+    STATS.gnames(i,1) = num2str(i);
+end
+
+
+return
+
+% -----------------------------------------------
+function crit = getcrit(ctype, alpha, df, ng)
+% Get the minimum of the specified critical values
+crit = Inf;
+[onetype,ctype] = strtok(ctype);
+
+while(~isempty(onetype))
+   if (length(onetype) == 1)
+      switch onetype
+       case 't', onetype = 'tukey-kramer';
+       case 'd', onetype = 'dunn-sidak';
+       case 'b', onetype = 'bonferroni';
+       case 's', onetype = 'scheffe';
+       case 'h', onetype = 'tukey-kramer';
+       case 'l', onetype = 'lsd';
+      end
+   end
+   if (isequal(onetype, 'hsd')), onetype = 'tukey-kramer'; end
+   
+   switch onetype
+    case 'tukey-kramer' % or hsd
+     crit1 = stdrinv(1-alpha, df, ng) / sqrt(2);
+     
+     % The T-K algorithm is inaccurate for small alpha, so compute
+     % an upper bound for it and make sure it's in range.
+     ub = getcrit('dunn-sidak', alpha, df, ng);
+     if (crit1 > ub), crit1 = ub; end
+
+    case 'dunn-sidak'
+     kstar = nchoosek(ng, 2);
+     alf = 1-(1-alpha).^(1/kstar);
+     if (isinf(df))
+        crit1 = norminv(1-alf/2);
+     else
+        crit1 = tinv(1-alf/2, df);
+     end
+
+    case 'bonferroni'
+     kstar = nchoosek(ng, 2);
+     if (isinf(df))
+        crit1 = norminv(1 - alpha / (2*kstar));
+     else
+        crit1 = tinv(1 - alpha / (2*kstar), df);
+     end
+
+    case 'lsd'
+     if (isinf(df))
+        crit1 = norminv(1 - alpha / 2);
+     else
+        crit1 = tinv(1 - alpha / 2, df);
+     end
+
+    case 'scheffe'
+     if (isinf(df))
+        tmp = chi2inv(1-alpha, ng-1) / (ng-1);
+     else
+        tmp = finv(1-alpha, ng-1, df);
+     end
+     crit1 = sqrt((ng-1) * tmp);
+     
+    otherwise
+     error(sprintf('Unknown critical value type %s.', ctype));
+   end
+
+   if (~isnan(crit1)), crit = min(crit, crit1); end
+   [onetype,ctype] = strtok(ctype);
+end
+
+% -----------------------------------------------
+function [M,MM,hh] = makeM(gmeans, gcov, crit, gnames, mname, dodisp)
+% Create matrix to test differences, matrix of means, graph to display test
+   
+ng = length(gmeans);
+MM = zeros(ng,2);
+MM(:,1) = gmeans(:);
+MM(:,2) = sqrt(diag(gcov));
+MM(isnan(MM(:,1)),2) = NaN;
+
+M = nchoosek(1:ng, 2);      % all pairs of group numbers
+M(1,5) = 0;                 % expand M to proper size
+g1 = M(:,1);
+g2 = M(:,2);
+M(:,4) = gmeans(g1) - gmeans(g2);
+i12 = sub2ind(size(gcov), g1, g2);
+gvar = diag(gcov);
+d12 = sqrt(gvar(g1) + gvar(g2) - 2 * gcov(i12));
+delta = crit * d12;
+M(:,3) = M(:,4) - delta;
+M(:,5) = M(:,4) + delta;
+
+% If requested, make a graph that approximates these tests
+if (dodisp)
+   % Find W values according to H&T (3.32, p. 98)
+   d = zeros(ng, ng);
+   d(i12) = d12;
+   sum1 = sum(sum(d));
+   d = d + d';
+   sum2 = sum(d);
+   if (ng > 2)
+      w = ((ng-1) * sum2 - sum1) ./ ((ng-1)*(ng-2));
+   else
+      w = repmat(sum1, 2, 1) / 2;
+   end
+   halfwidth = crit * w(:);
+   hh = meansgraph(gmeans, gmeans-halfwidth, gmeans+halfwidth, ...
+                   gnames, mname);
+   set(hh, 'Name', sprintf('Multiple comparison of %s',mname));
+else
+   hh = [];
+end
+
+% Sort samples ranked by mean
