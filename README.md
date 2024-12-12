@@ -32,7 +32,7 @@ SortingTools leverages several external repositories for spike sorting and analy
 
 | Tool              | Description                                    | Link                                                                                         |
 |-------------------|------------------------------------------------|----------------------------------------------------------------------------------------------|
-| **Kilosort**      | | **Kilosort**      | Fast and efficient spike sorting (supports Kilosort v2.0 and v4.0)               | [Kilosort v2.0](https://github.com/MouseLand/Kilosort/releases/tag/v2.0)                     |
+| **Kilosort**      | Fast and efficient spike sorting (supports Kilosort v2.0 and v4.0)               | [Kilosort v2.0](https://github.com/MouseLand/Kilosort/releases/tag/v2.0)                     |
                | [Kilosort v2.0](https://github.com/MouseLand/Kilosort/releases/tag/v2.0)                     |
 | **npy-matlab**    | Python-compatible .npy file reader for MATLAB  | [npy-matlab](https://github.com/kwikteam/npy-matlab)                                         |
 | **Phy**           | GUI for manual curation of spike sorting       | [Phy](https://github.com/kwikteam/phy)                                                      |
