@@ -49,7 +49,7 @@ SortingTools leverages several external repositories for spike sorting and analy
 ### Setup
 1. Clone this repository to your local machine:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/asadian98/SortingTools.git
 
 2. Open MATLAB and navigate to the repository folder.
 3. Run the demo script to explore the basic functionality:
