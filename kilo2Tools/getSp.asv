@@ -1,4 +1,4 @@
-function [sp, wf, wfOnPeak] = getSp(ksDir, datDir, sesName, datpath, n_channels, varargin)
+function [sp, wf, wfOnPeak] = getSp(ksDir, datDir, datpath, n_channels, varargin)
 %   sp = getSp(ksDir, varargin)
 %
 % get a spike struct from a kiloSort output directory (ksDir)
@@ -49,16 +49,16 @@ function [sp, wf, wfOnPeak] = getSp(ksDir, datDir, sesName, datpath, n_channels,
 % cids: [nClusters x 1] cluster id for each cluster e.g. [1 7 22 23 38]
 % nClu: number of clusters
 % nCh: number of channels
-% xcoords: [nCh×1] x locations of recording channels
-% ycoords: [nCh×1] y locations of recording channels
-% temps: [nTemplates × nTemplateSamples × nCh] template shapes used for
+% xcoords: [nChÃ—1] x locations of recording channels
+% ycoords: [nChÃ—1] y locations of recording channels
+% temps: [nTemplates Ã— nTemplateSamples Ã— nCh] template shapes used for
 % kilosort
-% winv: [24×24 single]  !!!!! 2do
+% winv: [24Ã—24 single]  !!!!! 2do
 % pcFeat: [] !!!!! 2do
 % pcFeatInd: [] !!!!! 2do
-% wv: [nCh × nWaveformSamples × nTotalSpikes] full waveform within a window
+% wv: [nCh Ã— nWaveformSamples Ã— nTotalSpikes] full waveform within a window
 % (window size defined in 'getSp.m')
-% medWfs: [nClusters × nCh × nWaveformSamples] median waveform on channel
+% medWfs: [nClusters Ã— nCh Ã— nWaveformSamples] median waveform on channel
 % which had the largest waveform amplitude.
 %
 
@@ -206,7 +206,6 @@ if p.Results.medWave
 %     load(fullfile(ksDir, 'ops.mat'));
     %     d = dir(ops.fbinary);
     d = dir([datDir '/*.dat']);
-    sp.n_channels_dat
     nSamp = d.bytes/2/sp.n_channels_dat;
     dataSize = [sp.n_channels_dat nSamp];
     chanMap = readNPY(fullfile(ksDir, 'channel_map.npy'));
@@ -214,8 +213,7 @@ if p.Results.medWave
     gain = 1; % I think gain for ripple is one, still waiting for ripple's answer!
 
     % median wf per cluster per channel, size: [nClu, nCh, nSamps]
-    
-        sp.medWfs = extractMedianWFs(sp.spikeClusters, sp.spikeTimesSecs, sp.sample_rate, fullfile(datDir, sp.dat_path), sp.dtype, dataSize, chanMap, gain);
+        sp.medWfs = extractMedianWFs(sp.spikeClusters, sp.spikeTimesSecs, sp.sample_rate, fullfile(ksDir, sp.dat_path), sp.dtype, dataSize, chanMap, gain);
 %     sp.medWfs = extractMedianWFs(sp.spikeClusters, sp.spikeTimesSamps, sp.sample_rate, fullfile(ksDir, sp.dat_path), sp.dtype, dataSize, chanMap, gain, 'samples');
     % median wf per cluster on peak amplitude channel, size: [nClu, nSamps]
     for iS = 1:sp.nClusters
@@ -260,7 +258,7 @@ if p.Results.waves
     Fs = sp.sample_rate;
     datPath = fullfile(datDir, sp.dat_path);
     dataType = sp.dtype;
-    d = dir([datDir '/*.dat']);
+    d = dir([info.ksDir '/*.dat']);
     nSamp = d.bytes/2/sp.n_channels_dat;
     dataSize = [sp.n_channels_dat nSamp];
     chanMap = readNPY(fullfile(ksDir, 'channel_map.npy'));

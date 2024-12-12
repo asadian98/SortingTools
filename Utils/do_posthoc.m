@@ -4,7 +4,7 @@ sesName = meta.sesName;
 
 % set paths for where to find your data
 
-myKsDir = Folders.datFolder;
+myKsDir = Folders.sortingFolder;
 
 eventFolder = [Folders.KiloFolder, sesName, '\'];
 

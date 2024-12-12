@@ -7,9 +7,9 @@ nCh = meta.nCh;
 
 disp('Getting Sorted spikes ...')
 
-getPhydata(sesName, Folders.datFolder, region)
+getPhydata(sesName, Folders.sortingFolder, region)
 
-cd(Folders.datFolder)
+cd(Folders.sortingFolder)
 load([sesName, '_Phy_', region])
 
 for i = 1:Physio_Info.numCh
@@ -31,27 +31,27 @@ Z_Spikes.info.SampleRate = meta.fs;
 
 % Extract waveforms and quality info and stuff ...
 if(saveWave_flag)
-    [sp, wf, wfOnPeak] = getSp(Folders.datFolder, [fileName, '.dat'], nCh, 'waves', true);
+    [sp, wf, wfOnPeak] = getSp(Folders.sortingFolder, Folders.save_dir, sesName, [fileName, '.dat'], nCh, 'waves', true);
 else
-    [sp, wf, wfOnPeak] = getSp(Folders.datFolder, [fileName, '.dat'], nCh, 'waves', false);
+    [sp, wf, wfOnPeak] = getSp(Folders.sortingFolder, Folders.save_dir, sesName, [fileName, '.dat'], nCh, 'waves', false);
 end
 
-sp2clust(sp, Folders.datFolder)
+sp2clust(sp, Folders.sortingFolder)
 
 % make sure there's a folder:
-if ~exist(fullfile(Folders.datFolder, 'figures'), 'dir')
-    mkdir(fullfile(Folders.datFolder, 'figures'));
+if ~exist(fullfile(Folders.sortingFolder, 'figures'), 'dir')
+    mkdir(fullfile(Folders.sortingFolder, 'figures'));
 end
 
 % set options:
 opts.saveFigs = 1;
-opts.dirFigs = Folders.datFolder;
+opts.dirFigs = Folders.sortingFolder;
 
 % make dem figures and save:
 %                 mkfig.waveform_overChannels(sp, opts);
 %                 mkfig.waveformOverChannels_perCluster(sp, opts);
 %                 mkfig.waveformAndSpikeCount_overChannels(sp, opts)
-su = sp2su(sp, Folders.datFolder);
+su = sp2su(sp, Folders.sortingFolder);
 
 disp('Saving Z_Spikes ...')
 cd(Folders.save_dir)

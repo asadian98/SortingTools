@@ -23,13 +23,13 @@ function runKilo(Folders, meta, thresh)
         [xcoords, ycoords, kcoords] = probeGeometry2coords(probeGeometry, nCh);
 
         % save:
-        save(fullfile(Folders.datFolder, 'chanMap150.mat'), ...
+        save(fullfile(Folders.sortingFolder, 'chanMap150.mat'), ...
             'chanMap','connected', 'xcoords', 'ycoords', 'kcoords', 'chanMap0ind', 'Fs', 'probeGeometry')
 
         %%
 
-        ops.root                = Folders.datFolder;
-        ops.chanMap             = fullfile(Folders.datFolder, 'chanMap150.mat');
+        ops.root                = [Folders.KiloFolder, sesName];
+        ops.chanMap             = fullfile(Folders.sortingFolder, 'chanMap150.mat');
         ops.fshigh = 150;
         ops.minfr_goodchannels = 0.05; % Ks default is 0.1
         ops.Th = [6 4];
@@ -76,7 +76,7 @@ function runKilo(Folders, meta, thresh)
         ops.momentum = [20 400];
 
         %% this block runs all the steps of the algorithm
-        rootZ = Folders.datFolder; % the raw data binary file is in this folder
+        rootZ = [Folders.KiloFolder, sesName]; % the raw data binary file is in this folder
         rootH = [Folders.KiloFolder, 'temp\']; % path to temporary binary file (same size as data, should be on fast SSD)
 
         ops.trange      = [0 Inf]; % time range to sort
@@ -125,7 +125,7 @@ function runKilo(Folders, meta, thresh)
 
         % write to Phy
         fprintf('Saving results to Phy  \n')
-        rezToPhy(rez, rootZ);
+        rezToPhy(rez, Folders.sortingFolder);
         %
         % % if you want to save the results to a Matlab file...
         %
@@ -145,18 +145,18 @@ function runKilo(Folders, meta, thresh)
         info.datestr        = datestr(now, 'yyyymmddTHHMM');
         info.RecLocation    = location;
         info.ops = ops;
-        save(fullfile(Folders.datFolder, 'convertInfo.mat'),  'info');
+        save(fullfile(Folders.sortingFolder, 'convertInfo.mat'),  'info');
         disp('info - saved')
 
         % sampsToSecsMap:
         % transform spike times in samples to spike times in seconds and store.
 
-        cd(Folders.datFolder)
-        spikeTimesSamples = readNPY(fullfile(ops.root, ...
+        cd(Folders.sortingFolder)
+        spikeTimesSamples = readNPY(fullfile(Folders.sortingFolder, ...
             'spike_times.npy'));
         spikeTimesSeconds = spikeTimesSamples/Fs;
         disp('Saving spike times in seconds to .npy file.')
-        writeNPY(spikeTimesSeconds, fullfile(ops.root, ...
+        writeNPY(spikeTimesSeconds, fullfile(Folders.sortingFolder, ...
             'spike_times_seconds.npy'));
 
         disp('Enjoy working with the data! Phy will pop up shortly ... ')
