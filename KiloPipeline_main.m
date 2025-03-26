@@ -260,7 +260,7 @@ end
 if(runKilo_flag)
     if(KL_version == 2)
         runKilo(Folders, meta, -6); % -6 is the default threshold
-    elseif(KL_version == 4)
+    elseif(KL_version == 4) % You need to find 'good' parameters for your recording at first
         cd(Folders.Utils)
         anaconda_path = 'C:\ProgramData\anaconda3';
         setenv('PATH', [anaconda_path ';' anaconda_path '\Scripts;' anaconda_path '\Library\bin;' getenv('PATH')]);
@@ -315,7 +315,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if(do_posthoc_flag)
-    do_posthoc(Folders, meta);
+    do_po    sthoc(Folders, meta);
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -12,7 +12,7 @@ getPhydata(sesName, Folders.sortingFolder, region)
 cd(Folders.sortingFolder)
 load([sesName, '_Phy_', region])
 
-for i = 1:Physio_Info.numCh
+for i = 1:nCh
     spk_arr = [];
     ID_arr = [];
     ch_cluster = find(cluster_channel == i);
@@ -31,9 +31,9 @@ Z_Spikes.info.SampleRate = meta.fs;
 
 % Extract waveforms and quality info and stuff ...
 if(saveWave_flag)
-    [sp, wf, wfOnPeak] = getSp(Folders.sortingFolder, Folders.save_dir, sesName, [fileName, '.dat'], nCh, 'waves', true);
+    [sp, wf, wfOnPeak] = getSp(Folders.sortingFolder, Folders.save_dir, sesName, [fileName, '.dat'], nCh, 'waves', true, 'waveWinT', -round(2/1000*30000):round(2/1000*30000)); %-60:60
 else
-    [sp, wf, wfOnPeak] = getSp(Folders.sortingFolder, Folders.save_dir, sesName, [fileName, '.dat'], nCh, 'waves', false);
+    [sp, wf, wfOnPeak] = getSp(Folders.sortingFolder, Folders.save_dir, sesName, [fileName, '.dat'], nCh, 'waves', false, 'waveWinT', -round(2/1000*30000):round(2/1000*30000)); %-60:60
 end
 
 sp2clust(sp, Folders.sortingFolder)

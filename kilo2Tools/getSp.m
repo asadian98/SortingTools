@@ -72,7 +72,7 @@ p.addOptional('waves', true);
 p.addOptional('exNoise', true);
 p.addOptional('exMu', false);
 p.addOptional('loadPCs', true);
-p.addOptional('waveWinT', [-300 900]); % see how many samples we extract, not using this
+p.addOptional('waveWinT', -15:38); % see how many samples we extract, % window is -0.5 to 1.25ms; -round(0.5/1000*Fs):round(1.25/1000*Fs)
 p.addOptional('medWave', true)
 p.addOptional('runQualityMeasures', true)
 p.addOptional('visualize', false)
@@ -206,12 +206,11 @@ if p.Results.medWave
 %     load(fullfile(ksDir, 'ops.mat'));
     %     d = dir(ops.fbinary);
     d = dir([datDir '/*.dat']);
-    sp.n_channels_dat
     nSamp = d.bytes/2/sp.n_channels_dat;
     dataSize = [sp.n_channels_dat nSamp];
     chanMap = readNPY(fullfile(ksDir, 'channel_map.npy'));
 %     gain = 0.6/512/500*1e6; % raw file units to uV ***SHOULD BE RIG SPECIFIC. NEED TO DO THIS...
-    gain = 1; % I think gain for ripple is one, still waiting for ripple's answer!
+    gain = 1;
 
     % median wf per cluster per channel, size: [nClu, nCh, nSamps]
     
@@ -267,11 +266,13 @@ if p.Results.waves
 %     gain = 0.6/512/500*1e6; % raw file units to uV ***SHOULD BE RIG SPECIFIC. NEED TO DO THIS...
     method = 'samples';
     
-    % window is -0.5 to 1.25ms
     % -0.5:1 with 100 Hz
     wfWin = -round(0.5/300*Fs):round(1/300*Fs);
 
-    wfWin = -round(0.5/1000*Fs):round(1.25/1000*Fs);
+    p.Results.waveWinT
+
+    wfWin = p.Results.waveWinT;
+    
     nWFsamps = numel(wfWin);
     
     nChInFile = dataSize(1);

@@ -1,6 +1,6 @@
 %% Data extraction and spike sorting pipeline, CorneilLab, Western University
 % Created by Amirhossein Asadian
-% Last Modified: Nov 29, 2024
+% Last Modified: Dec 12, 2024
 
 % Notes:
 % This is a pipeline script for extracting data from MonkeyLogic and Ripple,
@@ -47,9 +47,6 @@
 % You can also have Z_Wave/Z_Raw (very large files!)
 
 % TODO:
-
-%       - KL4
-%       - find wrong hand trajectories
 %       - Bombcell
 
 clc; clear;
@@ -77,19 +74,19 @@ Researcher =                'AA';
 
 S_probe16 =                 0;                          % If 16 channels S-probe
 
-getRPsum_flag =             1;                          % gives you ripple summary
-getEvents_flag =            1;                          % get events
+getRPsum_flag =             0;                          % gives you ripple summary
+getEvents_flag =            0;                          % get events
 saveRaw_flag =              0;                          % Save raw neural ripple file
-getDat_flag =               1;                          % save dat file
+getDat_flag =               0;                          % save dat file
 doFilters_flag =            0;                          % Apply filters
 runKilo_flag =              1;                          % Run Kilosort
 runQualityControl_flag =    0;                          % Run Bombcell for Quality Control
 runPhy_flag =               1;                          % Run Phy after sorting
-saveSpikes_flag =           1;                          % Save Z_Spikes (It also extract waveforms) extract waveform, quality metrics and ...; waveform extraction takes some time and will create the Z_WFf file
-saveWave_flag =             1;                          % Save Z_Wave,
-do_posthoc_flag =           1;                          % Just nice plots
+saveSpikes_flag =           0;                          % Save Z_Spikes (It also extract waveforms) extract waveform, quality metrics and ...; waveform extraction takes some time and will create the Z_WFf file
+saveWave_flag =             0;                          % Save Z_Wave,
+do_posthoc_flag =           0;                          % Just nice plots
 get_DLC_flag =              0;                          % If you had behavioral tracking
-KL_version =                2;                          % Kilosort version; 2 or 4
+KL_version =                4;                          % Kilosort version; 2 or 4
 
 fs =                        30000;
 
@@ -148,6 +145,14 @@ if ~exist([Folders.KiloFolder, sesName], 'dir')
     disp(['Folder "' sesName '" was created.']);
 else
     disp(['Folder "' sesName '" already exists.']);
+end
+
+cd([Folders.O_NHP_Folder, Folders.NHP_Folder, '\', sesName])
+if ~exist([region, '_KS', num2str(KL_version)], 'dir')
+    mkdir([region, '_KS', num2str(KL_version)]);
+    disp(['Folder "' [region, '_KS', num2str(KL_version)] '" was created.']);
+else
+    disp(['Folder "' [region, '_KS', num2str(KL_version)] '" already exists.']);
 end
 
 % meta info
@@ -237,9 +242,6 @@ if(getDat_flag)
 
     cd(Folders.KiloFolder)
     mkdir('temp');
-    cd(Folders.save_dir)
-    mkdir(['dat_', region]);
-    cd(['dat_', region])
     datFile = [Folders.KiloFolder, sesName, '\', fileName, '.dat'];
 
     % write ephys data to dat file:
@@ -258,20 +260,18 @@ end
 if(runKilo_flag)
     if(KL_version == 2)
         runKilo(Folders, meta, -6); % -6 is the default threshold
-    elseif(KL_version == 4)
+    elseif(KL_version == 4) % You need to find 'good' parameters for your recording at first
         cd(Folders.Utils)
         anaconda_path = 'C:\ProgramData\anaconda3';
         setenv('PATH', [anaconda_path ';' anaconda_path '\Scripts;' anaconda_path '\Library\bin;' getenv('PATH')]);
         if(~meta.S_probe16)
-            command = strcat("activate kilosort && python run_KS4.py ", Folders.KiloFolder, sesName, "\ ", Folders.Utils, "chanMap_32ch_150um.mat ", "32 ", meta.fileName,".dat");
+            command = strcat("activate kilosort && python run_KS4.py ", Folders.KiloFolder, sesName, "\ ", Folders.sortingFolder, " ", Folders.Utils, "chanMap_32ch_150um.mat ", "32 ", meta.fileName,".dat");
         else
-            command = strcat("activate kilosort && python run_KS4.py ", Folders.KiloFolder, sesName, "\ ", Folders.Utils, "chanMap_16ch_300um.mat ", "16 ", meta.fileName,".dat");
+            command = strcat("activate kilosort && python run_KS4.py ", Folders.KiloFolder, sesName, "\ ", Folders.sortingFolder, " ", Folders.Utils, "chanMap_16ch_300um.mat ", "16 ", meta.fileName,".dat");
         end
         [status, cmdout] = system(command, "-echo")
     end
 end
-
-%'C:/Users/CorneilLab/Desktop/test_KS/Belle/Be231201/dat_SC/'
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%   Quality Control - Bombcell  %%%%
@@ -315,7 +315,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if(do_posthoc_flag)
-    do_posthoc(Folders, meta);
+    do_po    sthoc(Folders, meta);
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
