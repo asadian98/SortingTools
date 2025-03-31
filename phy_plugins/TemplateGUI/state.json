@@ -1,0 +1,223 @@
+{
+  "AmplitudeView": {
+    "amplitudes_type": "feature",
+    "auto_update": true,
+    "marker_size": 5.0
+  },
+  "AmplitudeView (1)": {
+    "amplitudes_type": "feature",
+    "auto_update": true,
+    "marker_size": 2.5657905911535326
+  },
+  "AmplitudeView (2)": {
+    "amplitudes_type": "feature",
+    "auto_update": true,
+    "marker_size": 5.0
+  },
+  "ClusterScatterView": {
+    "auto_update": true,
+    "color_scheme": "random",
+    "marker_size": 1.0,
+    "size": "fr",
+    "size_log_scale": true,
+    "x_axis": "amp",
+    "x_axis_log_scale": false,
+    "y_axis": "depth",
+    "y_axis_log_scale": false
+  },
+  "ClusterView": {
+    "current_sort": [
+      "ch",
+      "asc"
+    ]
+  },
+  "CorrelogramView": {
+    "auto_update": true,
+    "bin_size": 0.001,
+    "refractory_period": 0.002,
+    "uniform_normalization": false,
+    "window_size": 0.05
+  },
+  "CorrelogramView (1)": {
+    "auto_update": true,
+    "bin_size": 0.001,
+    "refractory_period": 0.002,
+    "uniform_normalization": false,
+    "window_size": 0.25
+  },
+  "CorrelogramView (2)": {
+    "auto_update": true,
+    "bin_size": 0.001,
+    "refractory_period": 0.002,
+    "uniform_normalization": false,
+    "window_size": 0.05
+  },
+  "CorrelogramView (3)": {
+    "auto_update": true,
+    "bin_size": 0.001,
+    "refractory_period": 0.002,
+    "uniform_normalization": false,
+    "window_size": 0.05
+  },
+  "FeatureView": {
+    "auto_update": false,
+    "feature_scaling": 1.21,
+    "fixed_channels": false,
+    "marker_size": 0.0754556661163169
+  },
+  "FeatureView (1)": {
+    "auto_update": false,
+    "feature_scaling": 0.7513148009015773,
+    "fixed_channels": false,
+    "marker_size": 0.09130135600074345
+  },
+  "FeatureView (2)": {
+    "auto_update": true,
+    "feature_scaling": 0.9090909090909086,
+    "fixed_channels": false,
+    "marker_size": 0.4614799908853202
+  },
+  "FeatureView (3)": {
+    "auto_update": true,
+    "feature_scaling": 1.0,
+    "fixed_channels": false,
+    "marker_size": 5.0
+  },
+  "FiringRateView": {
+    "auto_update": true,
+    "n_bins": 200,
+    "x_min": 0
+  },
+  "FiringRateView (1)": {
+    "auto_update": true,
+    "n_bins": 200,
+    "x_max": 2977.658,
+    "x_min": 0
+  },
+  "GUI_VERSION": 2,
+  "ISIView": {
+    "auto_update": true,
+    "n_bins": 416,
+    "x_max": 0.5,
+    "x_min": 0.0
+  },
+  "PSTHView": {
+    "auto_update": true
+  },
+  "ProbeView": {
+    "auto_update": true,
+    "do_show_labels": false
+  },
+  "RasterPSTH_class": {
+    "auto_update": true
+  },
+  "RasterPSTH_class (1)": {
+    "auto_update": true
+  },
+  "RasterPSTH_class (2)": {
+    "auto_update": true
+  },
+  "RasterPSTH_class (3)": {
+    "auto_update": true
+  },
+  "RasterView": {
+    "auto_update": true,
+    "color_scheme": "random",
+    "marker_size": 5.0
+  },
+  "SpikeDetection_TemplatesView": {
+    "auto_update": true,
+    "marker_size": 5.0
+  },
+  "SpikePositionsView": {
+    "auto_update": true,
+    "marker_size": 5.0
+  },
+  "SpikeTimes_SecondsView": {
+    "auto_update": true,
+    "marker_size": 5.0
+  },
+  "SpikeTimes_SecondsView (1)": {
+    "auto_update": true,
+    "marker_size": 5.0
+  },
+  "TemplateFeatureView": {
+    "auto_update": true,
+    "marker_size": 5.0
+  },
+  "TemplateView": {
+    "auto_update": true,
+    "color_scheme": "random",
+    "scaling": 1.0
+  },
+  "TraceImageView": {
+    "auto_scale": true,
+    "auto_update": true,
+    "color_scheme": "random",
+    "do_show_labels": true,
+    "interval": [
+      133.43,
+      133.68
+    ],
+    "origin": "bottom",
+    "scaling": 0.6209213230591549,
+    "show_all_spikes": false
+  },
+  "TraceView": {
+    "auto_scale": true,
+    "auto_update": true,
+    "color_scheme": "random",
+    "do_show_labels": true,
+    "origin": "bottom",
+    "show_all_spikes": true
+  },
+  "TraceView (1)": {
+    "auto_scale": true,
+    "auto_update": true,
+    "color_scheme": "random",
+    "do_show_labels": true,
+    "origin": "bottom",
+    "show_all_spikes": false
+  },
+  "WaveformView": {
+    "auto_update": true,
+    "do_show_labels": true,
+    "overlap": true,
+    "waveforms_type": "waveforms"
+  },
+  "WaveformView (1)": {
+    "auto_update": true,
+    "box_scaling": [
+      1.0,
+      0.7513148009015774
+    ],
+    "do_show_labels": true,
+    "overlap": false,
+    "probe_scaling": [
+      1.0,
+      1.0
+    ],
+    "waveforms_type": "waveforms"
+  },
+  "batch_size_waveforms": 10,
+  "geometry_state": {
+    "geometry": {
+      "__qbytearray__": "QWRuUXl3QURBQUQvLy8vLy8vLy8rQUFBQ2dBQUFBUUlBQUFDZXdBQUFTd0FBQXVJQUFBRGd3QUFBQUFDQUFBQUNnQUFBQUFBQUFBQUZ3QUFDZjhBQUFRSA=="
+    },
+    "state": {
+      "__qbytearray__": "QUFBQS93QUFBQUQ5QUFBQUFnQUFBQUFBQUFUK0FBQURwdndCQUFBQUIvd0FBQUFBQUFBQmd3QUFBSFlBLy8vLy9BSUFBQUFDK3dBQUFCWUFRd0JzQUhVQWN3QjBBR1VBY2dCV0FHa0FaUUIzQVFBQUFEY0FBQUZUQUFBQUp3RC8vLy83QUFBQUhBQlRBR2tBYlFCcEFHd0FZUUJ5QUdrQWRBQjVBRllBYVFCbEFIY0JBQUFCamdBQUFrOEFBQUFuQVAvLy8vc0FBQUFtQUVNQWJ3QnlBSElBWlFCc0FHOEFad0J5QUdFQWJRQldBR2tBWlFCM0FDQUFLQUF5QUNrQUFBQUNtQUFBQU1ZQUFBQUFBQUFBQVBzQUFBQW1BRU1BYndCeUFISUFaUUJzQUc4QVp3QnlBR0VBYlFCV0FHa0FaUUIzQUNBQUtBQXpBQ2tBQUFBQ21BQUFBTVlBQUFBQUFBQUFBUHNBQUFBY0FGUUFjZ0JoQUdNQVpRQkpBRzBBWVFCbkFHVUFWZ0JwQUdVQWR3QUFBQUxHQUFBQTVRQUFBQUFBQUFBQSt3QUFBQklBVkFCeUFHRUFZd0JsQUZZQWFRQmxBSGNBQUFBQTFnQUFCQ2dBQUFFS0FQLy8vL3NBQUFBU0FGUUFjZ0JoQUdNQVpRQldBR2tBWlFCM0FRQUFBZjhBQUFRTUFBQUFBQUFBQUFEN0FBQUFHZ0JVQUhJQVlRQmpBR1VBVmdCcEFHVUFkd0FnQUNnQU1RQXBBUUFBQVljQUFBTjNBQUFCRlFELy8vOEFBQUFCQUFBRS9nQUFBNmI4QVFBQUFCLzhBQUFGQWdBQUFra0FBQUREQVAvLy8vd0NBQUFBQXZzQUFBQVlBRmNBWVFCMkFHVUFaZ0J2QUhJQWJRQldBR2tBWlFCM0FRQUFBRGNBQUFHbEFBQUFLZ0QvLy8vN0FBQUFKZ0JEQUc4QWNnQnlBR1VBYkFCdkFHY0FjZ0JoQUcwQVZnQnBBR1VBZHdBZ0FDZ0FNUUFwQVFBQUFlQUFBQUg5QUFBQUtnRC8vLy83QUFBQUhnQkdBR1VBWVFCMEFIVUFjZ0JsQUZZQWFRQmxBSGNBSUFBb0FERUFLUUFBQUFTTEFBQUJsUUFBQUs0QS8vLy8rd0FBQUJvQVFRQnRBSEFBYkFCcEFIUUFkUUJrQUdVQVZnQnBBR1VBZHdBQUFBUFRBQUFBM0FBQUFLWUEvLy8vL0FBQUIwOEFBQUt4QUFBQk1RRC8vLy84QWdBQUFBYjdBQUFBRmdCR0FHVUFZUUIwQUhVQWNnQmxBRllBYVFCbEFIY0FBQUFBQVAvLy8vOEFBQUFxQVAvLy8vc0FBQUFXQUVZQVpRQmhBSFFBZFFCeUFHVUFWZ0JwQUdVQWR3RUFBQUEzQUFBQnJRQUFBQUFBQUFBQSt3QUFBQjRBUmdCbEFHRUFkQUIxQUhJQVpRQldBR2tBWlFCM0FDQUFLQUF5QUNrQkFBQUFOd0FBQWdjQUFBQXFBUC8vLy9zQUFBQWVBRU1BYndCeUFISUFaUUJzQUc4QVp3QnlBR0VBYlFCV0FHa0FaUUIzQUFBQUFtc0FBQUNDQUFBQUtnRC8vLy83QUFBQUhnQkRBRzhBY2dCeUFHVUFiQUJ2QUdjQWNnQmhBRzBBVmdCcEFHVUFkd0VBQUFFb0FBQUJ2UUFBQUFBQUFBQUEvQUFBQWtJQUFBR2JBQUFBS2dELy8vLzhBUUFBQUFMOEFBQUhUd0FBQXJFQUFBRXhBUC8vLy93QkFBQUFBdnNBQUFBT0FFa0FVd0JKQUZZQWFRQmxBSGNCQUFBSFR3QUFBTUlBQUFDRkFQLy8vL3NBQUFBY0FFWUFhUUJ5QUdrQWJnQm5BRklBWVFCMEFHVUFWZ0JwQUdVQWR3RUFBQWdWQUFBQjZ3QUFBS2dBLy8vLy9BQUFCUjBBQUFHRkFBQUFBQUQvLy8vNkFBQUFBQUVBQUFBQit3QUFBQTRBU1FCVEFFa0FWZ0JwQUdVQWR3QUFBQVRYQUFBRFRnQUFBQUFBQUFBQSt3QUFBQ2dBVWdCaEFITUFkQUJsQUhJQVVBQlRBRlFBU0FCZkFHTUFiQUJoQUhNQWN3QWdBQ2dBTWdBcEFRQUFCYVFBQUFESUFBQUFBQUFBQUFEN0FBQUFLQUJTQUdFQWN3QjBBR1VBY2dCUUFGTUFWQUJJQUY4QVl3QnNBR0VBY3dCekFDQUFLQUF6QUNrQkFBQUdjQUFBQVJBQUFBQUFBQUFBQVBzQUFBQVFBRkFBVXdCVUFFZ0FWZ0JwQUdVQWR3RUFBQVQxQUFBQkxRQUFBQUFBQUFBQSt3QUFBQlFBVWdCaEFITUFkQUJsQUhJQVZnQnBBR1VBZHdBQUFBbHBBQUFBbHdBQUFBQUFBQUFBK3dBQUFDUUFRd0JzQUhVQWN3QjBBR1VBY2dCVEFHTUFZUUIwQUhRQVpRQnlBRllBYVFCbEFIY0FBQUFHeEFBQUFMd0FBQUFBQUFBQUFQc0FBQUFZQUZRQVpRQnRBSEFBYkFCaEFIUUFaUUJXQUdrQVpRQjNBQUFBQ1YwQUFBQ2pBQUFBQUFBQUFBRDdBQUFBSmdCVUFHVUFiUUJ3QUd3QVlRQjBBR1VBUmdCbEFHRUFkQUIxQUhJQVpRQldBR2tBWlFCM0FBQUFDVGNBQUFESkFBQUFBQUFBQUFEN0FBQUFGZ0JKQUZBQWVRQjBBR2dBYndCdUFGWUFhUUJsQUhjQUFBQUlkd0FBQVlrQUFBQUFBQUFBQVBzQUFBQWtBRVlBYVFCeUFHa0FiZ0JuQUZJQVlRQjBBR1VBVmdCcEFHVUFkd0FnQUNnQU1RQXBBQUFBQ1E0QUFBRHlBQUFBQUFBQUFBRDdBQUFBSUFCWEFHRUFkZ0JsQUdZQWJ3QnlBRzBBVmdCcEFHVUFkd0FnQUNnQU1RQXBBQUFBQ1VVQUFBQzdBQUFBQUFBQUFBRDdBQUFBSWdCQkFHMEFjQUJzQUdrQWRBQjFBR1FBWlFCV0FHa0FaUUIzQUNBQUtBQXlBQ2tBQUFBSlJRQUFBTHNBQUFBQUFBQUFBUHNBQUFBb0FGSUFZUUJ6QUhRQVpRQnlBRkFBVXdCVUFFZ0FYd0JqQUd3QVlRQnpBSE1BSUFBb0FERUFLUUVBQUFoWUFBQUJxQUFBQUFBQUFBQUErd0FBQUNBQVVnQmhBSE1BZEFCbEFISUFVQUJUQUZRQVNBQmZBR01BYkFCaEFITUFjd0VBQUFoWEFBQUJxUUFBQUFBQUFBQUErd0FBQUNBQVVnQmhBSE1BZEFCbEFISUFVQUJUQUZRQVNBQmZBR01BYkFCaEFITUFjd0VBQUFncUFBQUIxZ0FBQUFBQUFBQUErd0FBQUNBQVVnQmhBSE1BZEFCbEFISUFVQUJUQUZRQVNBQmZBR01BYkFCaEFITUFjd0VBQUFoVkFBQUJxd0FBQUFBQUFBQUErd0FBQUNBQVVnQmhBSE1BZEFCbEFISUFVQUJUQUZRQVNBQmZBR01BYkFCaEFITUFjd0VBQUFnMkFBQUJ5Z0FBQUFBQUFBQUErd0FBQUNBQVVnQmhBSE1BZEFCbEFISUFVQUJUQUZRQVNBQmZBR01BYkFCaEFITUFjd0VBQUFoWEFBQUJxUUFBQUFBQUFBQUErd0FBQUN3QVV3QndBR2tBYXdCbEFGUUFhUUJ0QUdVQWN3QmZBRk1BWlFCakFHOEFiZ0JrQUhNQVZnQnBBR1VBZHdBQUFBa0ZBQUFBK3dBQUFBQUFBQUFBK3dBQUFEUUFVd0J3QUdrQWF3QmxBRlFBYVFCdEFHVUFjd0JmQUZNQVpRQmpBRzhBYmdCa0FITUFWZ0JwQUdVQWR3QWdBQ2dBTVFBcEFBQUFDUllBQUFEcUFBQUFBQUFBQUFEN0FBQUFJQUJTQUdFQWN3QjBBR1VBY2dCUUFGTUFWQUJJQUY4QVl3QnNBR0VBY3dCekFRQUFDRG9BQUFIR0FBQUFBQUFBQUFEN0FBQUFJQUJTQUdFQWN3QjBBR1VBY2dCUUFGTUFWQUJJQUY4QVl3QnNBR0VBY3dCekFRQUFCKzRBQUFJU0FBQUFBQUFBQUFEN0FBQUFJQUJTQUdFQWN3QjBBR1VBY2dCUUFGTUFWQUJJQUY4QVl3QnNBR0VBY3dCekFRQUFCKzhBQUFJUkFBQUFBQUFBQUFEN0FBQUFJZ0JCQUcwQWNBQnNBR2tBZEFCMUFHUUFaUUJXQUdrQVpRQjNBQ0FBS0FBeEFDa0FBQUFKR2dBQUFPWUFBQUFBQUFBQUFQc0FBQUFlQUVZQVpRQmhBSFFBZFFCeUFHVUFWZ0JwQUdVQWR3QWdBQ2dBTXdBcEFBQUFDTHNBQUFDdUFBQUFBQUFBQUFEN0FBQUFFZ0JRQUhJQWJ3QmlBR1VBVmdCcEFHVUFkd0FBQUFsYkFBQUFwUUFBQUFBQUFBQUErd0FBQURnQVV3QndBR2tBYXdCbEFFUUFaUUIwQUdVQVl3QjBBR2tBYndCdUFGOEFWQUJsQUcwQWNBQnNBR0VBZEFCbEFITUFWZ0JwQUdVQWR3QUFBQWtMQUFBQTlRQUFBQUFBQUFBQSt3QUFBQ1FBVXdCd0FHa0Fhd0JsQUZBQWJ3QnpBR2tBZEFCcEFHOEFiZ0J6QUZZQWFRQmxBSGNBQUFBSlJnQUFBTG9BQUFBQUFBQUFBQUFBQUFBQUFBT21BQUFBQkFBQUFBUUFBQUFJQUFBQUNQd0FBQUFCQUFBQUFnQUFBQUVBQUFBT0FGUUFid0J2QUd3QVlnQmhBSElCQUFBQUFQLy8vLzhBQUFBQUFBQUFBQT09"
+    }
+  },
+  "n_spikes_waveforms": 1000,
+  "view_count": {
+    "AmplitudeView": 1,
+    "ClusterView": 1,
+    "CorrelogramView": 2,
+    "FeatureView": 3,
+    "FiringRateView": 1,
+    "ISIView": 1,
+    "SimilarityView": 1,
+    "TraceView": 2,
+    "WaveformView": 1
+  }
+}

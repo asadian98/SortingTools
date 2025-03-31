@@ -1,4 +1,4 @@
-cd C:/Users/CorneilLab/Desktop/SortingTools
+cd C:\\Users\\CorneilLab\\Desktop\\SortingTools
 git status
 git add .
 git commit -m "Your commit message here"

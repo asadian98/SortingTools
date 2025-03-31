@@ -1,7 +1,4 @@
 function [] = getDLC(Folders, meta)
-% For Be240328, there is one condition at the end that I'm not plotting the
-% second PD. I used the first 100 pulses for average diff.
-
 
 % TODO:
 % - calibration -- translate to degree
